@@ -1,0 +1,47 @@
+services:
+  db:
+    env_file:
+      - database.env
+    container_name: $DATABASE_CONTAINER_NAME
+    image: postgres:15
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  message_broker:
+    container_name: $MESSAGE_BROKER_CONTAINER_NAME
+    volumes:
+      - mb_data:/data
+    image: redis:7
+    restart: unless-stopped
+
+  backend:
+    env_file:
+      - .env
+      - database.env
+      - service.env
+    container_name: $BACKEND_CONTAINER_NAME
+    build:
+        context: .
+        target: backend
+        args:
+            BACKEND_CONTAINER_PORT: $BACKEND_CONTAINER_PORT
+    volumes:
+      - ./brew_hub:/BrewHub
+      - ./log:/${LOG_PATH}
+      - static:/brew-hub-${STATIC_PATH}
+      - media:/brew-hub-${MEDIA_PATH}
+    ports:
+      - 8000:$BACKEND_CONTAINER_PORT
+    restart: unless-stopped
+    entrypoint: python manage.py
+    command: runserver 0.0.0.0:$BACKEND_CONTAINER_PORT
+
+
+
+
+volumes:
+  media:
+  static:
+  db_data:
+  mb_data:

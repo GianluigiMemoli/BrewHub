@@ -1,0 +1,13 @@
+{% extends "base/page.html" %}
+{% load i18n %}
+{% block page_content %}
+    <div class="block is-flex is-justify-content-space-between is-align-items-center">
+        <span class="title">{% translate "Your recipes" %}</span>
+        <a href="{% url 'recipe:recipe_create' %}" class="button button-is is-flex is-align-items-center">
+            <span>{% translate "New recipe" %}</span>
+            <span class="icon" role="button"><i class="material-symbols-rounded">add_circle</i></span>
+        </a>
+    </div>
+
+
+{% endblock %}

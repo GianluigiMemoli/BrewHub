@@ -1,0 +1,23 @@
+{% extends "base/page.html" %}\
+{% load static %}
+{% load i18n %}
+{% load bulma_tags %}
+
+{% block page_content %}
+    <div class="block is-flex is-flex-gap">
+        <a href="{% url 'recipe:recipe_list' %}" class="icon has-text-white is-size-2 mr-6">
+            <i class="is-size-2 material-symbols-rounded">arrow_back</i>
+        </a>
+        <div class="container">
+            <h1 class="title">{{ recipe.title }}</h1>
+            <span class="subtitle">{% translate "Stages" %}</span>
+        </div>
+    </div>
+    <div class="block">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | bulma }}
+            <input class="button" type="submit" value="{% translate "Go next" %}"/>
+        </form>
+    </div>
+{% endblock %}

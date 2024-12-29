@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+{% load bulma_tags %}
+{% block body %}
+    <section class="section is-fullheight is-flex is-vcentered">
+
+        <div class="container my-auto">
+            <div class="columns is-fullheight is-centered">
+                <div class="column is-fullheight is-half">
+                    <div class="box">
+                        <form>
+                            {{ form | bulma }}
+                            <input class="button" type="submit" value="Welcome back!" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

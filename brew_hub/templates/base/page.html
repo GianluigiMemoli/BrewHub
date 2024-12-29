@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% block body %}
+
+        <div class="columns">
+            <aside class="menu brew-hub-menu column is-one-fifth" style="position: sticky;">
+                <div class="section">
+                    <ul class="menu-list">
+                    <li><a>Recipes</a></li>
+                    <li><a>Brews</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <div class="column is-four-fifths container brew-hub-content">
+                <div class="section">
+                    {% block page_content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
