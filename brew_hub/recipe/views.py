@@ -23,23 +23,21 @@ class CreateRecipeView(CreateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.created_by = self.request.user
-        self.success_url = reverse_lazy(
-            "recipe:stage_create", kwargs={"recipe": instance.pk}
-        )
+        self.success_url = reverse_lazy("recipe:stage_create", args=[instance.pk])
         return super().form_valid(form)
 
 
-class CreateStageView(CreateView):
-    model = Stage
-    template_name = "recipe/create_stage/create_stage.html"
-    form_class = StageForm
-    recipe = None
-
-    def get(self, request, *args, **kwargs):
-        self.recipe = get_object_or_404(Recipe, pk=request.get("recipe"))
-        return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["recipe"] = self.recipe
-        return context
+def create_stage(request, recipe):
+    recipe = get_object_or_404(Recipe, pk=recipe)
+    if request.method == "POST":
+        pass
+    else:
+        form = StageForm()
+    return render(
+        request,
+        "recipe/create_recipe/create_stage.html",
+        {
+            "form": form,
+            "recipe": recipe,
+        },
+    )

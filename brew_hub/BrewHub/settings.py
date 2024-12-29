@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "django_cotton",
     "bulma",
+    "base",
     "user_profile",
     "recipe",
 ]

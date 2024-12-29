@@ -11,4 +11,6 @@ class RecipeForm(ModelForm):
 class StageForm(ModelForm):
     class Meta:
         model = Stage
-        fields = ["title", "description", "days_duration"]
+        fields = ["title", "notes", "days_duration"]
+
+    field_order = ["title", "days_duration", "notes"]

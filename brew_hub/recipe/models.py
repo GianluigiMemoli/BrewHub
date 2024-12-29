@@ -39,8 +39,8 @@ class Ingredient(BaseModel):
 
 class Stage(BaseModel):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    title = models.CharField(max_length=255, help_text=_("Example: 1st fermentation"))
+    notes = models.TextField()
     order = models.PositiveIntegerField()
     ingredients = models.ManyToManyField("Ingredient", related_name="stages")
     days_duration = models.PositiveIntegerField(

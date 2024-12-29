@@ -4,13 +4,13 @@
 {% load bulma_tags %}
 
 {% block page_content %}
-    <div class="block is-flex is-flex-gap">
-        <a href="{% url 'recipe:recipe_list' %}" class="icon has-text-white is-size-2 mr-6">
+    <div class="block is-flex is-flex-gap is-align-items-center">
+        <a href="{% url 'recipe:recipe_list' %}" class=" has-text-white is-size-2 mr-6">
             <i class="is-size-2 material-symbols-rounded">arrow_back</i>
         </a>
         <div class="container">
-            <h1 class="title">{{ recipe.title }}</h1>
-            <span class="subtitle">{% translate "Stages" %}</span>
+            <h1 class="title m-0">{{ recipe.title }}</h1>
+            <span class="subtitle m-0">{% translate "Stages" %}</span>
         </div>
     </div>
     <div class="block">
@@ -19,5 +19,13 @@
             {{ form | bulma }}
             <input class="button" type="submit" value="{% translate "Go next" %}"/>
         </form>
+    </div>
+    <div class="block">
+        <div class="container is-flex is-justify-content-space-between is-align-items-center">
+            <h2 class="is-size-3">{% translate "Ingredients" %}</h2>
+            <c-icon-button el_attrs="hx-get='ciao'"
+                           icon="add_circle"
+                           text="{% translate 'Add ingredient' %}"></c-icon-button>
+        </div>
     </div>
 {% endblock %}
