@@ -1,4 +1,11 @@
+{% if el_type == "a" %}
+<a class="button is-flex is-align-items-center" {{ el_attrs }} href="{{ href }}">
+    <span class="material-symbols-rounded mr-1">{{ icon }}</span>
+    <span>{{ text }}</span>
+</a>
+{% else %}
 <button class="button is-flex is-align-items-center" {{ el_attrs }}>
     <span class="material-symbols-rounded mr-1">{{ icon }}</span>
     <span>{{ text }}</span>
 </button>
+{% endif %}
