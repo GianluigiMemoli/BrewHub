@@ -4,10 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import path
 from django.urls.conf import include
 
-
-def index(request):
-    return HttpResponseRedirect("/recipe")
-
+from BrewHub.views import index
 
 urlpatterns = [
     path("", index),

@@ -10,17 +10,11 @@
         </a>
         <div class="container">
             <h1 class="title m-0">{{ recipe.title }}</h1>
-            <span class="subtitle m-0">{% translate "Stages" %}</span>
+            <span class="subtitle m-0">{{ stage.title }} {% translate "stage" %} ingredients</span>
         </div>
     </div>
+
     <div class="block">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form | bulma }}
-            <input class="button" type="submit" value="{% translate "Go next" %}"/>
-        </form>
-    </div>
-    {% comment %}<div class="block">
         <div class="container is-flex is-justify-content-space-between is-align-items-center">
             <h2 class="is-size-3">{% translate "Ingredients" %}</h2>
             <c-icon-button el_attrs="hx-get='ciao'"
@@ -28,7 +22,7 @@
                            text="{% translate 'Add ingredient' %}"></c-icon-button>
         </div>
         <div class="container is-flex ingredient-form">
-            {{ ingredient_form | bulma }}
+            {{ form | bulma }}
         </div>
-    </div>{% endcomment %}
+    </div>
 {% endblock %}
