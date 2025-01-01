@@ -6,12 +6,15 @@
         <div class="container my-auto">
             <div class="columns is-fullheight is-centered">
                 <div class="column is-fullheight is-half">
-                    <div class="box">
-                        <form>
+
+                    <form method="POST">
+
+                            {% csrf_token %}
                             {{ form | bulma }}
-                            <input class="button" type="submit" value="Welcome back!" />
-                        </form>
-                    </div>
+                            <input class="button" type="submit" value="Welcome back!"/>
+
+                    </form>
+
                 </div>
             </div>
         </div>
