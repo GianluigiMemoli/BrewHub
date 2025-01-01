@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
 
 from django.shortcuts import render, get_object_or_404
@@ -7,14 +9,14 @@ from recipe.models import Recipe, Stage
 
 
 # Create your views here.
-class RecipeListView(ListView):
+class RecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
     template_name = "recipe/recipe_list.html"
     context_object_name = "recipes"
     paginate_by = 10
 
 
-class CreateRecipeView(CreateView):
+class CreateRecipeView(LoginRequiredMixin, CreateView):
     model = Recipe
     template_name = "recipe/create_recipe/create_recipe.html"
     form_class = RecipeForm
@@ -27,6 +29,7 @@ class CreateRecipeView(CreateView):
         return super().form_valid(form)
 
 
+@login_required
 def create_stage(request, recipe):
     recipe = get_object_or_404(Recipe, pk=recipe)
     if request.method == "POST":
